@@ -1,0 +1,99 @@
+$MSG-FONT: "Nunito", sans-serif;
+$MSG-FONT-WEIGHT: 700;
+$MSG-BUTTON-HEIGHT: 4.5rem;
+$MSG-COLORS: (
+  warning: (
+    begin: #FD8E69,
+    end: #FD6867,
+    font: #F94F55
+  ),
+  error: (
+    begin: #ED3F62,
+    end: #D00269,
+    font: #D00269
+  ),
+  success: (
+    begin: #55DFA9,
+    end: #30CC71,
+    font: #30CC71
+)
+);
+
+html {
+  font-size: 62.5%;
+}
+body {
+  margin: 0;
+}
+
+.cnt {
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 4rem;
+  background-color: #F3F4F6;
+}
+
+.msg {
+  width: 33rem;
+  height: 30rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; // adjusts more flexibly to lengthy texts
+  align-items: center;
+
+  margin: 2rem;
+
+  box-sizing: border-box;
+  border-radius: 0.7rem;
+  padding: 2rem;
+}
+@each $type, $gradient in $MSG-COLORS {
+  .msg--#{$type} {
+    background: linear-gradient(45deg, map_get($gradient, 'begin'), map_get($gradient, 'end'));
+  }
+}
+
+
+.msg__title, .msg__text, .msg__button {
+  font-family: $MSG-FONT;
+  font-weight: $MSG-FONT-WEIGHT;
+}
+
+.msg__title {
+  font-size: 2.4rem;
+  color: white;
+
+  margin-top: 1rem;
+}
+
+.msg--emoji {
+  font-weight: normal;
+}
+
+.msg__text {
+  font-size: 1.6rem;
+  text-align: center;
+
+  color: white;
+}
+
+.msg__button {
+  font-size: 2.1rem;
+
+  height: 4.5rem;
+  margin-top: 1rem;
+
+  border: none;
+  border-radius: $MSG-BUTTON-HEIGHT / 2;
+  padding: 0 $MSG-BUTTON-HEIGHT / 2 + 0.5rem;
+
+  box-shadow: 0 2px 2px rgba(100, 100, 100, 0.8);
+}
+
+@each $type, $colors in $MSG-COLORS {
+  .msg--#{$type}__button {
+    color: map_get($colors, 'font');
+  }
+}
